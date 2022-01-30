@@ -34,9 +34,9 @@ def check_and_update_tweets():
         msg = tweet['message']
         time_str = tweet['time']
         done = tweet['done']
-                
-        post_time = datetime.strptime(time_str, '%Y-%m-%d %H:%M:%S')
+
         if not done:
+            post_time = datetime.strptime(time_str, '%Y-%m-%d %H:%M:%S')
             now_time = get_now_time_normalized()
             if post_time < now_time:
                 try:

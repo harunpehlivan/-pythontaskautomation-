@@ -39,7 +39,7 @@ def get_product_info(url):
 if __name__ == '__main__':
     url = "https://www.amazon.com/Samsung-Factory-Unlocked-Smartphone-Pro-Grade/dp/B08FYTSXGQ/ref=sr_1_1_sspa?dchild=1&keywords=samsung%2Bs20&qid=1602529762&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExOTdFSllWVkhNMFRFJmVuY3J5cHRlZElkPUEwNDAyODczMktKMDdSVkVHSlA2WCZlbmNyeXB0ZWRBZElkPUEwOTc5NTcxM1ZXRlJBU1k1U0ZUSyZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU="
     products = [(url, 700)]
-    
+
     products_below_limit = []
     for product_url, limit in products:
         title, price, available = get_product_info(product_url)
@@ -48,12 +48,14 @@ if __name__ == '__main__':
 
 
     if products_below_limit:
-        message = "Subject: Price below limit!\n\n"
-        message += "Your tracked products are below the given limit!\n\n"
-        
+        message = (
+            "Subject: Price below limit!\n\n"
+            + "Your tracked products are below the given limit!\n\n"
+        )
+
         for url, title, price in products_below_limit:
             message += f"{title}\n"
             message += f"Price: {price}\n"
             message += f"{url}\n\n"
-        
+
         send_email(message)

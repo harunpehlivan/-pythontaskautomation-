@@ -24,7 +24,7 @@ def block_websites():
             lines = hostfile.readlines()
             hostfile.seek(0)
             for line in lines:
-                if not any(site in line for site in sites_to_block):
+                if all(site not in line for site in sites_to_block):
                     hostfile.write(line)
             hostfile.truncate()
 
